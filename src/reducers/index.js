@@ -1,3 +1,5 @@
+import { bindActionCreators } from "redux";
+
 const initialState = {
     additionalPrice: 0,
     car: {
@@ -16,8 +18,37 @@ const initialState = {
   };
 
   export const randomReducer = (state = initialState, action) => {
+    console.log("here",state)
       switch (action.type) {
+        case 'ADD_FEATURE':
+          return {
+            ...state,
+            additionalPrice: action.price,
+            car: {
+              ...state.car,
+              features:[
+                ...state.car.features,
+                { id: Date.now(), name: action.name, price: action.price }
+              ]
+            }
+          }
+          case 'REMOVE_FEATURE': 
+          const removed = state.car.features.filter(each => {
+            if(each.id === action.payload){
+              return null
+            } else{
+              return each
+            }
+          })
+          return{
+            ...state,
+            car: {
+              ...state.car,
+              features: removed
+            }
+          }
           default:
               return state;
       }
+     
   }
