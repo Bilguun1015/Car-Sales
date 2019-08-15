@@ -1,6 +1,6 @@
-export const addNewFeature = (name, price ) => {
+export const addNewFeature = (name, price, id ) => {
     return { 
-        type: 'ADD_FEATURE', name: name, price: price
+        type: 'ADD_FEATURE', name: name, price: price, id: id
     };
 }
 

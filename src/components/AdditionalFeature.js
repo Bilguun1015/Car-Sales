@@ -6,7 +6,7 @@ import {addNewFeature} from '../actions'
 const AdditionalFeature = props => {
 
   const addFeature = () => {
-    props.addNewFeature(props.feature.name, props.feature.price)
+    props.addNewFeature(props.feature.name, props.feature.price, props.feature.id)
   }
 
   return (
@@ -20,7 +20,7 @@ const AdditionalFeature = props => {
 
 const mapStateToProps = state => {
   return{
-
+    
   }
 }
 export default connect(mapStateToProps, {addNewFeature})(AdditionalFeature);

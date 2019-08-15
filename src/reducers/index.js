@@ -21,20 +21,25 @@ const initialState = {
     console.log("here",state)
       switch (action.type) {
         case 'ADD_FEATURE':
-          return {
-            ...state,
-            additionalPrice: action.price,
-            car: {
-              ...state.car,
-              features:[
-                ...state.car.features,
-                { id: Date.now(), name: action.name, price: action.price }
-              ]
+          let sum = state.additionalPrice + action.price
+            return {
+              ...state,
+              additionalPrice: sum,
+              car: {
+                ...state.car,
+                features:[
+                  ...state.car.features,
+                  { id: action.id, name: action.name, price: action.price }
+                ]
+              }
             }
-          }
+          
+         
           case 'REMOVE_FEATURE': 
+          let subt = state.additionalPrice
           const removed = state.car.features.filter(each => {
             if(each.id === action.payload){
+                subt = state.additionalPrice - each.price
               return null
             } else{
               return each
@@ -42,6 +47,7 @@ const initialState = {
           })
           return{
             ...state,
+            additionalPrice: subt,
             car: {
               ...state.car,
               features: removed
